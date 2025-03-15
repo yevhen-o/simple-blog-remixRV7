@@ -1,0 +1,4 @@
+.content__wrapper {
+  padding: var(--header-height) 0;
+  min-height: calc(100vh - var(--footer-height));
+}

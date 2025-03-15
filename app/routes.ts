@@ -7,7 +7,7 @@ import {
 import { getReactRouterPath, IDENTIFIERS } from "./utils/urlHelper";
 
 export default [
-  layout("./features/layout/MainLayout.tsx", [
+  layout("./features/layout/MainLayout/index.ts", [
     route(getReactRouterPath(IDENTIFIERS.HOME), "./pages/Home.tsx"),
     route(getReactRouterPath(IDENTIFIERS.BLOG), "./pages/Blog.tsx"),
     route(getReactRouterPath(IDENTIFIERS.BLOG_VIEW), "./pages/BlogPost.tsx"),
