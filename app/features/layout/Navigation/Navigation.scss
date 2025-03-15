@@ -21,6 +21,8 @@
   & > nav a {
     padding: var(--spacer-sm) var(--spacer-gn);
     text-decoration: none;
+    display: flex;
+    align-items: center;
 
     &.active {
       background-color: var(--color-gray-50);
@@ -30,5 +32,9 @@
       background-color: var(--color-primary);
       color: var(--color-gray-0);
     }
+  }
+
+  a.logo {
+    padding: 0;
   }
 }

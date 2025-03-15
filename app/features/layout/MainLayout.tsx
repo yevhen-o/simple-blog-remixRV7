@@ -1,14 +1,17 @@
 import { Outlet } from "react-router";
-import { Navigation } from "../../components/Navigation";
+
+import { Footer } from "./Footer";
+import { Navigation } from "./Navigation";
 import "../../index.scss";
 
 export default function MainLayout() {
   return (
     <div>
       <Navigation />
-      <div className="content__wrapper">
+      <div style={{ padding: "var(--spacer-xl)" }} className="content__wrapper">
         <Outlet />
       </div>
+      <Footer />
     </div>
   );
 }

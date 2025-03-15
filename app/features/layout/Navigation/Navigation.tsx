@@ -22,6 +22,9 @@ export const Navigation = () => {
   return (
     <div className="top-navigation__wrapper">
       <nav>
+        <Link to={getUrl(IDENTIFIERS.HOME)} className="logo">
+          <img src="/favicon.ico" alt="My Blog Logo" className="logo__img" />
+        </Link>
         {items.map(({ link, title, className }) => (
           <Link
             key={link}
