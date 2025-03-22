@@ -16,7 +16,7 @@ export default function UserPage({
       <BackButtonHeading>
         View user, to check cache revalidation
       </BackButtonHeading>
-      <code>{JSON.stringify(loaderData, null, 2)}</code>;
+      <code>{JSON.stringify(loaderData, null, 2)}</code>
     </>
   );
 }

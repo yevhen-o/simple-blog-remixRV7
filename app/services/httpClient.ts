@@ -1,15 +1,12 @@
 import { ZodSchema } from "zod";
 
-import {
-  FirebasePostsSchema,
-  type FirebasePostInterface,
-} from "../types/PostInterface";
+import { type PostInterface } from "../types/PostInterface";
 import {
   type UserInterface,
   UserValidationSchema,
   UserListValidationSchema,
 } from "../types/UserInterface";
-import { type LoaderFunctionArgs } from "react-router";
+import supabase from "./supabase";
 
 // use env by default
 const baseUrl = ""; //"http://localhost:3000/api";
@@ -55,17 +52,40 @@ const httpClient = async <T>(
 };
 
 export const getBlogPosts = async () => {
-  return await httpClient<FirebasePostInterface>(
-    "https://myblog-1c34a-default-rtdb.europe-west1.firebasedatabase.app/blogs.json",
-    FirebasePostsSchema
-  );
+  const { data } = await supabase
+    .from("blog-posts")
+    .select(
+      `
+        slug,
+        title,
+        author_id,
+        image_url,
+        tags,
+        author:author_id (
+          first_name,
+          last_name
+        )
+      `
+    )
+    .order("created_at", { ascending: false });
+  return data;
 };
 
 export const getBlogBySlug = async (slug: string) => {
-  return await httpClient<FirebasePostInterface>(
-    `https://myblog-1c34a-default-rtdb.europe-west1.firebasedatabase.app/blogs.json?orderBy="slug"&equalTo="${slug}"`,
-    FirebasePostsSchema
-  );
+  const { data } = await supabase
+    .from("blog-posts")
+    .select(
+      `
+      *,
+      author:author_id (
+        first_name,
+        last_name
+      )
+      `
+    )
+    .eq("slug", slug)
+    .single();
+  return data as PostInterface;
 };
 
 // User routes can be in their own file httpClient also goes to it own file in this case

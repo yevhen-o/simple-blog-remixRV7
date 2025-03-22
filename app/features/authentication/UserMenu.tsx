@@ -2,19 +2,19 @@
 
 import { Button } from "@src/components/Button";
 import { DropDown } from "@src/components/DropDown";
-import { useAuth } from "@src/hooks/useAuth";
-import { logout } from "@src/services/firebase/auth";
 import { useState } from "react";
 import { AuthModal } from "./AuthModal";
+import { useAuthStore } from "@src/store/authStore";
 
 export const UserMenu = () => {
   const [hasAuthModalShown, setHasAuthModalShown] = useState(false);
-  const { user } = useAuth();
+  const user = useAuthStore((store) => store.user);
+  const logOut = useAuthStore((store) => store.logOut);
   const options = [
     {
       label: "Log out",
       value: "logout",
-      onClick: logout,
+      onClick: logOut,
     },
   ];
   return (

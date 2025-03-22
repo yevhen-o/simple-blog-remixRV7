@@ -1,6 +1,6 @@
 import { BlogArticle } from "@src/features/Blog/BlogArticle";
 import { getBlogBySlug } from "@src/services/httpClient";
-import { type FirebasePostInterface } from "@src/types/PostInterface";
+import { type PostInterface } from "@src/types/PostInterface";
 
 export async function loader({ params }: { params: { slug: string } }) {
   const blog = await getBlogBySlug(params.slug);
@@ -10,7 +10,7 @@ export async function loader({ params }: { params: { slug: string } }) {
 export default function BlogPost({
   loaderData,
 }: {
-  loaderData: FirebasePostInterface;
+  loaderData: PostInterface;
 }) {
-  return <BlogArticle article={Object.values(loaderData)[0]} />;
+  return <BlogArticle article={loaderData} />;
 }
